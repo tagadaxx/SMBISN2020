@@ -57,8 +57,6 @@ while continuer:
             if event.key == K_LEFT:
                 mario.x += -10
                 orientation = "G"
-                if walk ==0:
-                orientation = "G"
                 if walk == 0:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
                     walk += 1
