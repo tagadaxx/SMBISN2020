@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-screensize = (800, 800)
+screensize = (299, 224)
 pygame.init()
 fenetre = pygame.display.set_mode(screensize, RESIZABLE)
 
