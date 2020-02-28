@@ -9,7 +9,7 @@ continuer = True
 RUN, PAUSE = 0, 1
 etat = RUN
 
-fond = pygame.image.load("overworld_bg.png").convert_alpha()
+fond = pygame.image.load("fond.png").convert_alpha()
 
 while continuer:
     for event in pygame.event.get():
