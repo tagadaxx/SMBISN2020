@@ -59,7 +59,7 @@ while continuer:
             if event.key == K_DOWN and MarioState == 1:
                 mario = perso("mariocrouch.gif", mario.x, mario.y)
             if event.key == K_LEFT:
-                mario.x += -10
+                mario.x += -8
                 orientation = "G"
                 if walk == 0:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
@@ -74,9 +74,8 @@ while continuer:
                     mario.image = pygame.transform.flip(mario.image, True, False)
                     walk = 0
             if event.key == K_RIGHT:
-                mario.x += 10
+                mario.x += 8
                 orientation = "D"
-                X -= 1
                 if walk == 0:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
                     walk += 1
@@ -93,7 +92,7 @@ while continuer:
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == KEYUP:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
 
-    if mario.x >= 480 :
+    if mario.x >= 448 :
         X -= 4
         mario.x -= 4
 
