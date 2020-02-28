@@ -5,6 +5,8 @@ from pygame.locals import *
 start = 0
 tempy= 0
 xaya = -10
+points = 0
+white = Color(255,255,255)
 
 screensize = (897, 672)
 pygame.init()
@@ -33,6 +35,17 @@ mario = perso("MarioSmall.gif", 96, 528)
 def resize(a,x,y):
     self =  pygame.transform.scale(a, (x,y))
     return self
+
+def text_objects(text, font):
+    textSurface = font.render(text, True, white)
+    return textSurface, textSurface.get_rect()
+
+
+def message_display(text,a,b):
+    largeText = pygame.font.Font('SuperMario256.ttf',25)
+    TextSurf, TextRect = text_objects(text, largeText)
+    TextRect.center = (a,b)
+    fenetre.blit(TextSurf, TextRect)
 
 MarioState = 0
 walk = 0
@@ -132,9 +145,7 @@ while continuer:
     if start == 1 :
         fenetre.blit(fond, (X, 0))
         fenetre.blit(mario.image, (mario.x,mario.y))
-
-
-
+    message_display("score : "+str(points), 70, 30)
 
 
 
