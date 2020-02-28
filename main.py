@@ -34,9 +34,6 @@ def resize(a,x,y):
     self =  pygame.transform.scale(a, (x,y))
     return self
 
-def distance(a, b,c ,d):
-    return ((c - a) ** 2 + (d - b) ** 2) ** (1 / 2)
-
 MarioState = 0
 walk = 0
 orientation = "D"
@@ -66,12 +63,16 @@ while continuer:
                 orientation = "G"
                 if walk == 0:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
+                    mario.image = pygame.transform.flip(mario.image, True, False)
                     walk += 1
                 elif walk == 1:
                     mario = perso("MarioSmallWalk2.gif", mario.x, mario.y)
+                    mario.image = pygame.transform.flip(mario.image, True, False)
                     walk += 1
                 elif walk == 2:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
+                    mario.image = pygame.transform.flip(mario.image, True, False)
+                    walk = 0
             if event.key == K_RIGHT:
                 mario.x += 10
                 orientation = "D"
@@ -95,7 +96,6 @@ while continuer:
     if mario.x >= 480 :
         X -= 4
         mario.x -= 4
-
 
 
     if jump == 1 and xaya < 9 :
@@ -133,6 +133,9 @@ while continuer:
     if start == 1 :
         fenetre.blit(fond, (X, 0))
         fenetre.blit(mario.image, (mario.x,mario.y))
+
+
+
 
 
 
