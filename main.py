@@ -13,25 +13,31 @@ etat = RUN
 fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176,672))
 
-pygame.key.set_repeat(100, 25)
-mario = perso("SuperMarioWalk3.gif")
 
+pygame.key.set_repeat(100, 25)
+mario = perso("SuperMarioWalk3.gif", 64, 512)
+MarioState = 0
 while continuer:
+
     for event in pygame.event.get():
 
         if event.type == QUIT:
             continuer = False
             quit()
         if event.type == KEYDOWN :
-            if event.key == K_UP and jump = 0:
+            if event.key == K_UP and jump == 0:
                 jump = 1
-            if event.key == K_DOWN:
-                mario.x = mario.x
+            if event.key == K_DOWN and MarioState == 1:
+                mario = perso("mariocrouch.gif", mario.x, mario.y)
             if event.key == K_LEFT:
                 mario.x += -10
             if event.key == K_RIGHT:
-                mario.x += 5
-    if jump == 1:
+                mario.x += 10
+        if event.type == KEYUP :
+            if event.key == K_DOWN :
+                mario = perso("SuperMarioWalk3.gif", mario.x, mario.y)
+
+
 
 
     fenetre.blit(fond, (0, 0))
