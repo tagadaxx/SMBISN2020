@@ -10,7 +10,7 @@ fenetre = pygame.display.set_mode(screensize, RESIZABLE)
 continuer = True
 RUN, PAUSE = 0, 1
 etat = RUN
-
+jump_sound = pygame.mixer.Sound("jump.wav")
 jump = 0
 walk = 0
 
@@ -30,7 +30,7 @@ def resize(a,x,y):
 
 MarioState = 0
 walk = 0
-orientation = D
+orientation = "D"
 
 
 while continuer:
@@ -46,16 +46,17 @@ while continuer:
         if event.type == KEYDOWN :
             if event.key == K_UP and jump == 0:
                 jump = 1
+                pygame.mixer.Sound.play(jump_sound)
                 tempy = mario.y
             if event.key == K_DOWN and MarioState == 1:
                 mario = perso("mariocrouch.gif", mario.x, mario.y)
             if event.key == K_LEFT:
                 mario.x += -10
 
-                orientation = G
+                orientation = "G"
                 if walk ==0:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
-                    walk +=
+                    walk += 1
                 elif walk == 1:
                     mario = perso("MarioSmallWalk2.gif", mario.x, mario.y)
                     walk +=1
@@ -63,7 +64,7 @@ while continuer:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
             if event.key == K_RIGHT:
                 mario.x += 10
-                orientation = D
+                orientation = "D"
                 if walk == 0 :
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
                     walk += 1
