@@ -141,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582910355855</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="V0003">
+      <created>1582910584559</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1582910584559</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -151,7 +158,8 @@
     <MESSAGE value="testetstetste" />
     <MESSAGE value="v0001" />
     <MESSAGE value="V0002" />
-    <option name="LAST_COMMIT_MESSAGE" value="V0002" />
+    <MESSAGE value="V0003" />
+    <option name="LAST_COMMIT_MESSAGE" value="V0003" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="68" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582907762254">
@@ -162,30 +170,30 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="538" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1582907901764" />
-    <state x="424" y="8" key="CommitChangelistDialog2" timestamp="1582910355319">
+    <state x="424" y="8" key="CommitChangelistDialog2" timestamp="1582910584067">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="424" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1582910355319" />
+    <state x="424" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1582910584067" />
     <state x="548" y="177" key="FileChooserDialogImpl" timestamp="1582907758997">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="548" y="177" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582907758997" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1582910513982">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1582911070235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582910513982" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1582910513982">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582911070235" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1582911070235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1582910513982" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1582910513982">
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1582911070235" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1582911070235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1582910513982" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1582910513982">
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1582911070235" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1582911070235">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1582910513982" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1582911070235" />
     <state x="147" y="71" key="MergeDialog" timestamp="1582909111232">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

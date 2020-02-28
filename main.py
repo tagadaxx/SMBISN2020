@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-screensize = (299, 224)
+screensize = (897, 672)
 pygame.init()
 fenetre = pygame.display.set_mode(screensize, RESIZABLE)
 
@@ -10,6 +10,7 @@ RUN, PAUSE = 0, 1
 etat = RUN
 
 fond = pygame.image.load("map.png").convert_alpha()
+fond = pygame.transform.scale(fond, (10176,672))
 
 while continuer:
     for event in pygame.event.get():
