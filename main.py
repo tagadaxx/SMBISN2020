@@ -4,7 +4,6 @@ from pygame.locals import *
 
 start = 0
 tempy= 0
-xaya = -10
 points = 0
 white = Color(255,255,255)
 
@@ -17,9 +16,13 @@ etat = RUN
 jump_sound = pygame.mixer.Sound("jump.wav")
 jump = 0
 walk = 0
-xaya = -11
 initjump = 0
 coins = 0
+X=0
+xaya=-10
+MarioState = 0
+walk = 0
+orientation = "D"
 
 
 fond = pygame.image.load("map.png").convert_alpha()
@@ -48,9 +51,7 @@ def message_display(text,a,b):
     TextRect.center = (a,b)
     fenetre.blit(TextSurf, TextRect)
 
-MarioState = 0
-walk = 0
-orientation = "D"
+
 
 with open("entities.txt", "r") as entities:
     for ligne in entities:
@@ -106,44 +107,40 @@ while continuer:
                 mario.x += 10
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == KEYUP:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
-        if jump == 1 and xaya < 10 :
-            if xaya>0:
-                xaya += 1
-                mario.y -= round(-(xaya**2), 0)
-            else :
-                xaya += 1
-                mario.y += round(-2/3*(xaya**2), 0)
-            if xaya == 10:
-                mario.y = tempy
-                if MarioState == 0 :
-                    mario = perso("MarioSmall.gif", mario.x, mario.y)
-                if MarioState == 1 :
-                    mario = perso("SuperMario.gif", mario.x, mario.y)
+
+        if jump == 1 and xaya < 9:
+            if initjump == 0:
+                xaya = -10
+                initjump = 1
+
+    if jump == 1 and xaya < 9:
+
+        if xaya > 0:
+            xaya += 1
+            mario.y -= round(-2 / 3 * (xaya ** 2), 0)
+        else:
+            xaya += 1
+            mario.y += round(-2 / 3 * (xaya ** 2), 0)
+        if xaya == 9:
+            mario.y = tempy
+            if MarioState == 0:
+                mario = perso("MarioSmall.gif", mario.x, mario.y)
+            if MarioState == 1:
+                mario = perso("SuperMario.gif", mario.x, mario.y)
+
+    else:
+        jump = 0
+        xaya = -10
 
     if mario.x >= 448 :
         X -= 4
         mario.x -= 4
 
 
-    if jump == 1 and xaya < 9 :
-        if initjump == 0 :
-            xaya = -10
-            initjump = 1
-
-    if jump == 1 and xaya<9 :
-
-        if xaya>0:
-            xaya += 1
-            mario.y -= round(-2/3*(xaya**2), 0)
-        else :
-            jump = 0
-            xaya =-11
-
-
-        if MarioState == 0:
-            mario.image = resize(mario.image, 42, 48)
-        elif MarioState == 1 or MarioState == 2:
-            mario.image = resize(mario.image, 48, 80)
+    if MarioState == 0:
+        mario.image = resize(mario.image, 42, 48)
+    elif MarioState == 1 or MarioState == 2:
+        mario.image = resize(mario.image, 48, 80)
 
     if start == 0 :
         fenetre.blit(splash,(0,0))
@@ -152,7 +149,6 @@ while continuer:
         fenetre.blit(mario.image, (mario.x,mario.y))
     message_display("score : "+str(points), 70, 30)
     message_display('coins : '+str(coins), 70, 60)
-
 
 
     pygame.display.update()
