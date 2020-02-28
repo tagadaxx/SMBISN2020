@@ -19,3 +19,5 @@ while continuer:
             quit()
 
     fenetre.blit(fond, (10, 10))
+    pygame.display.update()
+    pygame.time.Clock().tick(60)
