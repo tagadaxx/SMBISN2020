@@ -9,7 +9,7 @@ continuer = True
 RUN, PAUSE = 0, 1
 etat = RUN
 
-fond = pygame.image.load("fond.png").convert_alpha()
+fond = pygame.image.load("cheems.jpg").convert_alpha()
 
 while continuer:
     for event in pygame.event.get():
@@ -17,5 +17,5 @@ while continuer:
         if event.type == QUIT:
             continuer = False
             quit()
-
-    fenetre.blit(fond, (0, 0))
+    fond = pygame.image.load("cheems.jpg").convert_alpha()
+    fenetre.blit(fond, (10, 10))
