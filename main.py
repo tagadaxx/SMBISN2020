@@ -2,7 +2,7 @@ import pygame
 from Perso import perso
 from pygame.locals import *
 
-
+start = 0
 tempy= 0
 xaya = -10
 
@@ -21,6 +21,8 @@ initjump = 0
 
 fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176, 672))
+splash = pygame.image.load("Smb splash.png").convert_alpha()
+
 
 
 pygame.key.set_repeat(100, 25)
@@ -47,6 +49,8 @@ while continuer:
             quit()
 
         if event.type == KEYDOWN :
+            if event.key == K_SPACE :
+                start = 1
             if event.key == K_UP and jump == 0:
                 jump = 1
                 pygame.mixer.Sound.play(jump_sound)
@@ -56,8 +60,6 @@ while continuer:
                 mario = perso("mariocrouch.gif", mario.x, mario.y)
             if event.key == K_LEFT:
                 mario.x += -10
-                orientation = "G"
-                if walk ==0:
                 orientation = "G"
                 if walk == 0:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
@@ -118,7 +120,10 @@ while continuer:
         mario.image = resize(mario.image, 48, 80)
 
 
-    fenetre.blit(fond, (0, 0))
-    fenetre.blit(mario.image, (mario.x,mario.y))
+    if start == 0 :
+        fenetre.blit(splash,(0,0))
+    if start == 1 :
+        fenetre.blit(fond, (0, 0))
+        fenetre.blit(mario.image, (mario.x,mario.y))
     pygame.display.update()
     pygame.time.Clock().tick(60)
