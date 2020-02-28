@@ -1,3 +1,6 @@
+import pygame
+
+
 class perso:
     def __init__(self, image, x=0, y=0, directionX=1, directionY=1):
         self.image = pygame.image.load(image).convert_alpha()
@@ -7,10 +10,10 @@ class perso:
         self.directionY = directionY
 
     def vie(mavie, x=50, y=50):
-      mavie = 5
-     if perdu
-        mavie = mavie-1
-     print(mavie)
+        mavie = 5
+        if perdu:
+            mavie = mavie-1
+        print(mavie)
 
 
     def move(self):
