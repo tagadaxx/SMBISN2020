@@ -52,13 +52,17 @@ while continuer:
             if event.key == K_DOWN :
                 mario = perso("SuperMarioWalk3.gif", mario.x, mario.y)
 
-    if jump == 1 and xaya<5 :
+    if jump == 1 and xaya<9 :
         if initjump == 0 :
-            xaya = -5
+            xaya = -10
             initjump = 1
+        elif xaya>0:
+            xaya += 1
+            mario.y -= round(-2/3*(xaya**2), 0)
+
         else :
             xaya += 1
-        mario.y += round(-2/3*(xaya**2), 0)+4
+            mario.y += round(-2/3*(xaya**2), 0)
     else :
         initjump = 0
         jump = 0
