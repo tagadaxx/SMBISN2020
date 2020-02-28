@@ -1,4 +1,5 @@
 import pygame
+from Perso import perso
 from pygame.locals import *
 
 screensize = (897, 672)
@@ -13,6 +14,7 @@ fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176,672))
 
 pygame.key.set_repeat(100, 25)
+perso("SuperMarioWalk3.gif", (64,320))
 
 while continuer:
     for event in pygame.event.get():
@@ -22,7 +24,7 @@ while continuer:
             quit()
         if event.type == KEYDOWN :
             if event.key == K_UP:
-                mario.y -= 10
+                mario.y
             if event.key == K_DOWN:
                 mario.y += 10
             if event.key == K_LEFT:
@@ -31,6 +33,7 @@ while continuer:
                 mario.x += 10
             if event.key == K_SPACE:
                 etat = PAUSE
+
 
 
     fenetre.blit(fond, (0, 0))

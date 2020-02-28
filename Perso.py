@@ -1,4 +1,4 @@
-class perso():
+class perso:
     def __init__(self, image, x=0, y=0, directionX=1, directionY=1):
         self.image = pygame.image.load(image).convert_alpha()
         self.x = x
