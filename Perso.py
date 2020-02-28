@@ -13,15 +13,10 @@ class perso():
      print(mavie)
 
 
-
     def move(self):
         if self.x == 0:
             self.directionX = 1
-        if self.x == screensize[0] - 60:
-            self.directionX = -1
         if self.y == 0:
             self.directionY = 1
-        if self.y == screensize[1] - 100:
-            self.directionY = -1
         self.x += self.directionX
         self.y += self.directionY
