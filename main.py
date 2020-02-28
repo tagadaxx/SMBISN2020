@@ -56,18 +56,18 @@ while continuer:
             if event.key == K_LEFT:
                 mario.x += -10
                 orientation = "G"
-                if walk ==0:
+                if walk == 0:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
                     walk += 1
                 elif walk == 1:
                     mario = perso("MarioSmallWalk2.gif", mario.x, mario.y)
-                    walk +=1
+                    walk += 1
                 elif walk == 2:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
             if event.key == K_RIGHT:
                 mario.x += 10
                 orientation = "D"
-                if walk == 0 :
+                if walk == 0:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
                     walk += 1
                 elif walk == 1:
@@ -104,12 +104,9 @@ while continuer:
             if MarioState == 1 :
                 mario = perso("SuperMario.gif", mario.x, mario.y)
 
-
     else :
         jump = 0
         xaya =-10
-
-
 
 
     if MarioState == 0:
