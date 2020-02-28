@@ -9,7 +9,7 @@ continuer = True
 RUN, PAUSE = 0, 1
 etat = RUN
 
-fond = pygame.image.load("cheems.jpg").convert_alpha()
+fond = pygame.image.load("map.png").convert_alpha()
 
 while continuer:
     for event in pygame.event.get():
@@ -18,6 +18,6 @@ while continuer:
             continuer = False
             quit()
 
-    fenetre.blit(fond, (10, 10))
+    fenetre.blit(fond, (0, 0))
     pygame.display.update()
     pygame.time.Clock().tick(60)
