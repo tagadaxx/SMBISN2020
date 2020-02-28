@@ -10,8 +10,10 @@ fenetre = pygame.display.set_mode(screensize, RESIZABLE)
 continuer = True
 RUN, PAUSE = 0, 1
 etat = RUN
+
 jump = 0
 walk = 0
+
 
 fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176, 672))
@@ -25,7 +27,10 @@ def resize(a,x,y):
     self =  pygame.transform.scale(a, (x,y))
     return self
 
+
 MarioState = 0
+walk = 0
+orientation = D
 
 
 while continuer:
@@ -37,6 +42,7 @@ while continuer:
         if event.type == QUIT:
             continuer = False
             quit()
+
         if event.type == KEYDOWN :
             if event.key == K_UP and jump == 0:
                 jump = 1
@@ -45,8 +51,34 @@ while continuer:
                 mario = perso("mariocrouch.gif", mario.x, mario.y)
             if event.key == K_LEFT:
                 mario.x += -10
+
+                orientation = G
+                if walk ==0:
+                    mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
+                    walk +=
+                elif walk == 1:
+                    mario = perso("MarioSmallWalk2.gif", mario.x, mario.y)
+                    walk +=1
+                elif walk == 2:
+                    mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
             if event.key == K_RIGHT:
                 mario.x += 10
+                orientation = D
+                if walk == 0 :
+                    mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
+                    walk += 1
+                elif walk == 1:
+                    mario = perso("MarioSmallWalk2.gif", mario.x, mario.y)
+                    walk += 1
+                elif walk == 2:
+                    mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
+                    walk = 0
+
+        if event.type == KEYUP :
+
+            if event.key == K_RIGHT:
+                mario.x += 10
+
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
         if event.type == KEYUP :
