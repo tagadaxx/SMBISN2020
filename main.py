@@ -16,7 +16,11 @@ walk = 0
 
 pygame.key.set_repeat(100, 25)
 mario = perso("MarioSmall.gif", 64, 544)
+def resize(self,x,y):
+    self =  pygame.transform.scale(self, (x,y))
+    return self
 MarioState = 0
+
 while continuer:
 
     for event in pygame.event.get():
