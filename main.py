@@ -49,13 +49,14 @@ def message_display(text,a,b):
 MarioState = 0
 walk = 0
 orientation = "D"
-X = 0
+
+with open("entities.txt", "r") as entities:
+    for ligne in entities:
+        print(ligne[9:].split(";"))
+
 
 while continuer:
-
     for event in pygame.event.get():
-
-
         if event.type == QUIT:
             continuer = False
             quit()
@@ -103,6 +104,19 @@ while continuer:
                 mario.x += 10
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == KEYUP:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
+        if jump == 1 and xaya < 10 :
+            if xaya>0:
+                xaya += 1
+                mario.y -= round(-(xaya**2), 0)
+            else :
+                xaya += 1
+                mario.y += round(-2/3*(xaya**2), 0)
+            if xaya == 10:
+                mario.y = tempy
+                if MarioState == 0 :
+                    mario = perso("MarioSmall.gif", mario.x, mario.y)
+                if MarioState == 1 :
+                    mario = perso("SuperMario.gif", mario.x, mario.y)
 
     if mario.x >= 448 :
         X -= 4
@@ -120,24 +134,14 @@ while continuer:
             xaya += 1
             mario.y -= round(-2/3*(xaya**2), 0)
         else :
-            xaya += 1
-            mario.y += round(-2/3*(xaya**2), 0)
-        if xaya == 9:
-            mario.y = tempy
-            if MarioState == 0 :
-                mario = perso("MarioSmall.gif", mario.x, mario.y)
-            if MarioState == 1 :
-                mario = perso("SuperMario.gif", mario.x, mario.y)
-
-    else :
-        jump = 0
-        xaya =-10
+            jump = 0
+            xaya =-11
 
 
-    if MarioState == 0:
-        mario.image = resize(mario.image, 42, 48)
-    elif MarioState == 1 or MarioState == 2:
-        mario.image = resize(mario.image, 48, 80)
+        if MarioState == 0:
+            mario.image = resize(mario.image, 42, 48)
+        elif MarioState == 1 or MarioState == 2:
+            mario.image = resize(mario.image, 48, 80)
 
     if start == 0 :
         fenetre.blit(splash,(0,0))
