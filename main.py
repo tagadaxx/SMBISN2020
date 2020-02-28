@@ -2,11 +2,11 @@ import pygame
 from Perso import perso
 from pygame.locals import *
 
-xaya = 0
+tempy= 0
+xaya = -10
 screensize = (897, 672)
 pygame.init()
 fenetre = pygame.display.set_mode(screensize, RESIZABLE)
-initjump = 0
 continuer = True
 RUN, PAUSE = 0, 1
 etat = RUN
@@ -14,7 +14,7 @@ jump = 0
 walk = 0
 
 fond = pygame.image.load("map.png").convert_alpha()
-fond = pygame.transform.scale(fond, (10176,672))
+fond = pygame.transform.scale(fond, (10176, 672))
 
 
 pygame.key.set_repeat(100, 25)
@@ -40,6 +40,7 @@ while continuer:
         if event.type == KEYDOWN :
             if event.key == K_UP and jump == 0:
                 jump = 1
+                tempy = mario.y
             if event.key == K_DOWN and MarioState == 1:
                 mario = perso("mariocrouch.gif", mario.x, mario.y)
             if event.key == K_LEFT:
@@ -53,19 +54,19 @@ while continuer:
                 mario = perso("SuperMarioWalk3.gif", mario.x, mario.y)
 
     if jump == 1 and xaya<9 :
-        if initjump == 0 :
-            xaya = -10
-            initjump = 1
-        elif xaya>0:
+        if xaya>0:
             xaya += 1
             mario.y -= round(-2/3*(xaya**2), 0)
-
         else :
             xaya += 1
             mario.y += round(-2/3*(xaya**2), 0)
+        if xaya == 9:
+            mario.y = tempy
     else :
-        initjump = 0
         jump = 0
+        xaya =-10
+
+
 
     if MarioState == 0:
         mario.image = resize(mario.image, 42, 48)
