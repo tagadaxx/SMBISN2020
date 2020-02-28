@@ -4,7 +4,6 @@ from pygame.locals import *
 
 start = 0
 tempy= 0
-xaya = -10
 points = 0
 white = Color(255,255,255)
 
@@ -17,7 +16,6 @@ etat = RUN
 jump_sound = pygame.mixer.Sound("jump.wav")
 jump = 0
 walk = 0
-xaya = 0
 initjump = 0
 coins = 0
 
