@@ -22,6 +22,7 @@ initjump = 0
 fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176, 672))
 splash = pygame.image.load("Smb splash.png").convert_alpha()
+splash = pygame.transform.scale(splash, (897,672))
 
 
 
@@ -33,11 +34,13 @@ def resize(a,x,y):
     self =  pygame.transform.scale(a, (x,y))
     return self
 
+def distance(a, b,c ,d):
+    return ((c - a) ** 2 + (d - b) ** 2) ** (1 / 2)
 
 MarioState = 0
 walk = 0
 orientation = "D"
-
+X = 0
 
 while continuer:
 
@@ -72,6 +75,7 @@ while continuer:
             if event.key == K_RIGHT:
                 mario.x += 10
                 orientation = "D"
+                X -= 1
                 if walk == 0:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
                     walk += 1
@@ -87,6 +91,11 @@ while continuer:
                 mario.x += 10
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == KEYUP:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
+
+    if mario.x >= 480 :
+        X -= 4
+        mario.x -= 4
+
 
 
     if jump == 1 and xaya < 9 :
@@ -119,11 +128,13 @@ while continuer:
     elif MarioState == 1 or MarioState == 2:
         mario.image = resize(mario.image, 48, 80)
 
-
     if start == 0 :
         fenetre.blit(splash,(0,0))
     if start == 1 :
-        fenetre.blit(fond, (0, 0))
+        fenetre.blit(fond, (X, 0))
         fenetre.blit(mario.image, (mario.x,mario.y))
+
+
+
     pygame.display.update()
     pygame.time.Clock().tick(60)
