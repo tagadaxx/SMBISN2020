@@ -14,7 +14,7 @@ fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176,672))
 
 pygame.key.set_repeat(100, 25)
-perso("SuperMarioWalk3.gif", (64,320))
+mario = perso("SuperMarioWalk3.gif", (64,320))
 
 while continuer:
     for event in pygame.event.get():
