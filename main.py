@@ -23,15 +23,15 @@ while continuer:
             continuer = False
             quit()
         if event.type == KEYDOWN :
-            if event.key == K_UP:
-                mario.y += 10
+            if event.key == K_UP and jump = 0:
+                jump = 1
             if event.key == K_DOWN:
                 mario.x = mario.x
             if event.key == K_LEFT:
                 mario.x += -10
             if event.key == K_RIGHT:
-                mario.x += 10
-
+                mario.x += 5
+    if jump == 1:
 
 
     fenetre.blit(fond, (0, 0))
