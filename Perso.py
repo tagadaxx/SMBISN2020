@@ -6,10 +6,10 @@ class perso():
         self.directionX = directionX
         self.directionY = directionY
 
-    def vie(,mavie, x=50, y=50):
+    def vie(mavie, x=50, y=50):
       mavie = 5
      if perdu
-     mavie = mavie-1
+        mavie = mavie-1
      print(mavie)
 
 

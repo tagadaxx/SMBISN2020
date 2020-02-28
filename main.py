@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-screensize = (1280, 720)
+screensize = (800, 800)
 pygame.init()
 fenetre = pygame.display.set_mode(screensize, RESIZABLE)
 
@@ -17,5 +17,5 @@ while continuer:
         if event.type == QUIT:
             continuer = False
             quit()
-    fond = pygame.image.load("cheems.jpg").convert_alpha()
+
     fenetre.blit(fond, (10, 10))
