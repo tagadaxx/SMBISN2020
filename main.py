@@ -26,7 +26,7 @@ while continuer:
             if event.key == K_UP:
                 mario.y += 10
             if event.key == K_DOWN:
-                mario.y += 10
+                mario.x = mario.x
             if event.key == K_LEFT:
                 mario.x += -10
             if event.key == K_RIGHT:
@@ -35,6 +35,6 @@ while continuer:
 
 
     fenetre.blit(fond, (0, 0))
-    fenetre.blit(mario.image, (64,512))
+    fenetre.blit(mario.image, (mario.x,mario.y))
     pygame.display.update()
     pygame.time.Clock().tick(60)
