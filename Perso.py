@@ -6,7 +6,7 @@ class perso:
         self.image = pygame.image.load(image).convert_alpha()
         self.x = x
         self.y = y
-        #self.rect = self.image.getrect
+        #self.rect = self.image.get_rect()
 
 
 

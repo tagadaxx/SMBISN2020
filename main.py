@@ -19,6 +19,7 @@ jump = 0
 walk = 0
 xaya = -11
 initjump = 0
+coins = 0
 
 
 fond = pygame.image.load("map.png").convert_alpha()
@@ -150,6 +151,7 @@ while continuer:
         fenetre.blit(fond, (X, 0))
         fenetre.blit(mario.image, (mario.x,mario.y))
     message_display("score : "+str(points), 70, 30)
+    message_display('coins : '+str(coins), 70, 60)
 
 
 
