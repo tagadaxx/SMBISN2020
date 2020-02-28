@@ -9,21 +9,28 @@ fenetre = pygame.display.set_mode(screensize, RESIZABLE)
 continuer = True
 RUN, PAUSE = 0, 1
 etat = RUN
+walk = 0
 
 fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176,672))
-walk = 0
+
 
 pygame.key.set_repeat(100, 25)
-mario = perso("MarioSmall.gif", 64, 544)
-def resize(self,x,y):
-    self =  pygame.transform.scale(self, (x,y))
+mario = perso("MarioSmall.gif", 96, 528)
+
+
+def resize(a,x,y):
+    self =  pygame.transform.scale(a, (x,y))
     return self
+
 MarioState = 0
+
 
 while continuer:
 
+
     for event in pygame.event.get():
+
 
         if event.type == QUIT:
             continuer = False
@@ -58,6 +65,11 @@ while continuer:
         if event.type == KEYUP :
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
+
+        if MarioState == 0:
+            mario.image = resize(mario.image, 42, 48)
+        elif MarioState == 1 or MarioState == 2:
+            mario.image = resize(mario.image, 48, 80)
 
 
 
