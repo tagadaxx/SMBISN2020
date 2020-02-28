@@ -46,6 +46,8 @@ while continuer:
                 mario.x += -10
             if event.key == K_RIGHT:
                 mario.x += 10
+            if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT:
+                mario = perso("MarioSmall.gif", mario.x, mario.y)
         if event.type == KEYUP :
             if event.key == K_DOWN :
                 mario = perso("SuperMarioWalk3.gif", mario.x, mario.y)
@@ -60,14 +62,11 @@ while continuer:
     else :
         initjump = 0
         jump = 0
-            if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT:
-                mario = perso("MarioSmall.gif", mario.x, mario.y)
 
-        if MarioState == 0:
-            mario.image = resize(mario.image, 42, 48)
-        elif MarioState == 1 or MarioState == 2:
-            mario.image = resize(mario.image, 48, 80)
-
+    if MarioState == 0:
+        mario.image = resize(mario.image, 42, 48)
+    elif MarioState == 1 or MarioState == 2:
+        mario.image = resize(mario.image, 48, 80)
 
     fenetre.blit(fond, (0, 0))
     fenetre.blit(mario.image, (mario.x,mario.y))
