@@ -6,6 +6,8 @@ class perso:
         self.image = pygame.image.load(image).convert_alpha()
         self.x = x
         self.y = y
+        #self.rect = self.image.getrect
+
 
 
     def vie(mavie, x=50, y=50):
