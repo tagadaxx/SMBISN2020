@@ -7,6 +7,7 @@ blocks = [(20,8),(22,8),(24,8),(78,8),(80,8),(81,4),(82,4),(83,4),(85,4),(86,4),
 luckbl = [(16,8,10),(22,4,10),(21,8,11),(23,8,10),(79,8,11),(94,4,10),(107,8,10),(109,8,10),(109,4,12),(111,8,10),(129,4,10),(130,4,10),(170,4,10)]
 hardbl = [(134,11),(135,10),(136,9),(137,8),(140,8),(141,9),(142,10),(143,11),(148,11),(149,10),(150,9),(151,8),(152,8),(155,8),(156,9),(157,10),(158,11),(181,11),(182,10),(183,9),(184,8),(185,7),(186,6),(187,5),(188,4),(189,4)]
 pipOr = [(29,10,2),(39,9,3),(47,8,4),(58,8,4),(163,10,2),(179,10,2)]
+globgr = [(0,12),(15,12),(30,12),(45,12),(51,12),(72,12),(89,12),(89,12),(104,12),(119,12),(134,12),(137,12),(155,12),(170,12),(185,12)]
 
 
 
@@ -40,6 +41,7 @@ splash = pygame.image.load("Smb splash.png").convert_alpha()
 splash = pygame.transform.scale(splash, (897,672))
 blocplein = Platform(960, 384, 48, 48, "BlocPlein.gif")
 brique = Platform(960, 384, 48, 48, "brique.gif")
+globalgr = Platform(960, 384, 720, 96, "global_ground.png")
 
 
 pygame.key.set_repeat(1, 1)
@@ -193,11 +195,13 @@ while continuer:
         fenetre.blit(splash,(0,0))
     if start == 1 :
         fenetre.blit(fond, (X, 0))
-        #pygame.draw.rect(fenetre, white, pygame.Rect(0, 0, 10176, 672))
+        pygame.draw.rect(fenetre, white, pygame.Rect(0, 0, 10176, 672))
         for i in range(0, len(blocks)-1):
             fenetre.blit(brique.image, (blocks[i][0]*48 + X, blocks[i][1]*48))
         for i in range(0, len(hardbl) - 1):
             fenetre.blit(blocplein.image, (hardbl[i][0] * 48 + X, hardbl[i][1] * 48))
+        for i in range(0, len(globgr) - 1):
+            fenetre.blit(globalgr.image, (globgr[i][0] * 48 + X, globgr[i][1] * 48))
         fenetre.blit(mario.image, (round(mario.x,0),round(mario.y,0)))
 
     message_display("score : "+str(points), 70, 30)
