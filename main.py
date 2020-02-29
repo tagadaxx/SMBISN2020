@@ -128,12 +128,11 @@ while continuer:
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == KEYUP:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
 
-        if jump == 1 and xaya < 9:
+        if jump == 1 and xaya < 0:
             if initjump == 0:
                 xaya = -10
                 initjump = 1
-
-    """    if jump == 1 and xaya < 9:
+    if jump == 1 and xaya < 0:
         if xaya > 0:
             xaya += 1
             mario.y -= round(-2 / 3 * (xaya ** 2), 0)
@@ -149,20 +148,18 @@ while continuer:
 
     else:
         jump = 0
-        xaya = -10"""
+        xaya = -10
     if event.type == KEYDOWN :
-        if event.key == K_RIGHT and xmomentum<40:
+        if event.key == K_RIGHT and xmomentum<70:
             xmomentum += 1
-        if event.key == K_LEFT and xmomentum>-40 :
+        if event.key == K_LEFT and xmomentum>-70 :
             xmomentum += -1
-        if event.key == K_UP and jump == 0 :
-            ymomentum -= 20
-            jump = 1
+
     else :
         xmomentum = xmomentum/2
-        if mario.y+48 > 576 :
-            ymomentum = ymomentum+5
-        jump = 0
+        if mario.y+48 < 576 :
+            ymomentum +=20
+
     mario.x += xmomentum
     mario.y+= ymomentum
 
