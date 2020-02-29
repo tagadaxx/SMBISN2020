@@ -1,0 +1,56 @@
+
+    """if jump == 1 and xaya < 9:
+        if initjump == 0:
+            xaya = -10
+            initjump = 1
+
+        '''if jump == 1 and xaya < 9:
+            print(xaya)
+            if xaya > 0:
+                xaya += 1
+                mario.y -= round(-2 / 3 * (xaya ** 2), 0)
+            else:
+                xaya += 1
+                mario.y += round(-2 / 3 * (xaya ** 2), 0)
+            if xaya == 9:
+                mario.y = tempy
+                if MarioState == 0:
+                    mario = perso("MarioSmall.gif", mario.x, mario.y)
+                if MarioState == 1:
+                    mario = perso("SuperMario.gif", mario.x, mario.y)
+
+        else:
+            jump = 0
+            xaya = -10"""
+
+
+"""
+with open("entities.txt", "r") as entities:
+    for ligne in entities:
+        liste= ligne[9:].split(";")
+        liste.pop()
+        for i in range(len(liste)):
+            liste[i]=int(liste[i])
+        print(ligne[0])
+        if ligne[0] == "1" :
+            ligne1 = len(liste)
+        if ligne[0] == "2" :
+            ligne2 = len(liste)
+        if ligne[0] == "3" :
+            ligne3 = len(liste)
+        if ligne[0] == "4" :
+            ligne4 = len(liste)
+        coordlist += liste
+
+print(liste1, liste2, liste3, liste4)
+    print(coordlist)
+    print(ligne1,ligne2,ligne3,ligne4)
+for i in range (0,ligne1):
+    liste1 += coordlist[i]
+for i in range (ligne1 +1,ligne2):
+    liste2 += coordlist[i]
+for i in range (ligne2 +1,ligne3):
+    liste3 += coordlist[i]
+for i in range (ligne3 +1,ligne4):
+    liste4 += coordlist[i]
+"""
