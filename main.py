@@ -146,7 +146,7 @@ while continuer:
         fenetre.blit(splash,(0,0))
     if start == 1 :
         fenetre.blit(fond, (X, 0))
-        fenetre.blit(mario.image, (mario.x,mario.y))
+        fenetre.blit(mario.image, (round(mario.x,0),round(mario.y,0)))
     message_display("score : "+str(points), 70, 30)
     message_display('coins : '+str(coins), 70, 60)
 
