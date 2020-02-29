@@ -31,7 +31,6 @@ splash = pygame.image.load("Smb splash.png").convert_alpha()
 splash = pygame.transform.scale(splash, (897,672))
 
 
-
 pygame.key.set_repeat(1, 1)
 mario = perso("MarioSmall.gif", 96, 528)
 
@@ -68,30 +67,30 @@ while continuer:
             if event.key == K_SPACE :
                 start = 1
             if event.key == K_LEFT:
-                mario.x += -8
+                mario.x += -4
                 orientation = "G"
-                if walk == 0:
+                if walk < 1:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
                     mario.image = pygame.transform.flip(mario.image, True, False)
-                    walk += 1
-                elif walk == 1:
+                    walk += 0.5
+                elif 1 <= walk < 2:
                     mario = perso("MarioSmallWalk2.gif", mario.x, mario.y)
                     mario.image = pygame.transform.flip(mario.image, True, False)
-                    walk += 1
-                elif walk == 2:
+                    walk += 0.5
+                elif walk >= 2:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
                     mario.image = pygame.transform.flip(mario.image, True, False)
                     walk = 0
             if event.key == K_RIGHT:
-                mario.x += 8
+                mario.x += 4
                 orientation = "D"
-                if walk == 0:
+                if walk < 1:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
-                    walk += 1
-                elif walk == 1:
+                    walk += 0.5
+                elif 1 <= walk < 2:
                     mario = perso("MarioSmallWalk2.gif", mario.x, mario.y)
-                    walk += 1
-                elif walk == 2:
+                    walk += 0.5
+                elif walk >= 2:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
                     walk = 0
             if event.key == K_UP and jump == 0:
@@ -120,15 +119,16 @@ while continuer:
             mario.y += round(-2 / 3 * (xaya ** 2), 0)
         if xaya == 9:
             mario.y = tempy
+            if MarioState == 0:
+                mario = perso("MarioSmall.gif", mario.x, mario.y)
+            if MarioState == 1:
+                mario = perso("SuperMario.gif", mario.x, mario.y)
 
     else:
         jump = 0
         xaya = -10
 
-    if MarioState == 0:
-        mario = perso("MarioSmall.gif", mario.x, mario.y)
-    if MarioState == 1:
-        mario = perso("SuperMario.gif", mario.x, mario.y)
+
 
     if mario.x >= 448 :
         X -= 4
