@@ -133,11 +133,12 @@ while continuer:
         if event.type == KEYDOWN :
             print(niveau[int(mario.y // 48)][int((mario.x - X) // 48 + 1)])
             if event.key == K_RIGHT and xmomentum<7:
-                    if niveau[int(mario.y//48)][int((mario.x-X)//48+1)]==0:
-                        xmomentum += 0.5
-                    elif niveau[int(mario.y//48)][int((mario.x-X)//48+1)]==1:
-                        xmomentum += 0
-
+                if niveau[int(mario.y//48)][int((mario.x-X)//48+1)]==0:
+                    xmomentum += 0.5
+                elif niveau[int(mario.y//48)][int((mario.x-X)//48+1)]==1:
+                    mario.x = I
+                    mario.y = J
+                    xmomentum = 0
 
             if event.key == K_LEFT and xmomentum>-7 :
                 xmomentum -= 0.5
@@ -161,13 +162,18 @@ while continuer:
         ymomentum=0
 
 
+
     if mario.x >= 448 :
         X -= xmomentum
         mario.x -= xmomentum
 
+
+
     if mario.x <= 96:
         X -= xmomentum
         mario.x -= xmomentum
+
+
 
     if MarioState == 0:
         mario.image = resize(mario.image, 42, 48)
