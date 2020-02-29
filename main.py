@@ -1,7 +1,7 @@
 import pygame
 from Perso import perso
 from pygame.locals import *
-
+pygame.init()
 start = 0
 xmomentum,ymomentum = 0,0
 tempy= 0
@@ -9,7 +9,6 @@ points = 0
 white = Color(255,255,255)
 coordlist=[]
 screensize = (897, 672)
-pygame.init()
 fenetre = pygame.display.set_mode(screensize, RESIZABLE)
 continuer = True
 RUN, PAUSE = 0, 1
@@ -37,7 +36,7 @@ mario = perso("MarioSmall.gif", 96, 528)
 
 
 def resize(a,x,y):
-    self =  pygame.transform.scale(a, (x,y))
+    self = pygame.transform.scale(a, (x,y))
     return self
 
 def text_objects(text, font):
@@ -117,7 +116,6 @@ while continuer:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
                     walk = 0
             if event.key == K_UP and jump == 0:
-                jump = 1
                 pygame.mixer.Sound.play(jump_sound)
                 tempy = mario.y
                 mario = perso("MarioJump.gif", mario.x, mario.y)
@@ -133,38 +131,41 @@ while continuer:
                 xaya = -10
                 initjump = 1
 
-    if jump == 1 and xaya < 9:
-        if xaya > 0:
-            xaya += 1
-            mario.y -= round(-2 / 3 * (xaya ** 2), 0)
-        else:
-            xaya += 1
-            mario.y += round(-2 / 3 * (xaya ** 2), 0)
-        if xaya == 9:
-            mario.y = tempy
-            if MarioState == 0:
-                mario = perso("MarioSmall.gif", mario.x, mario.y)
-            if MarioState == 1:
-                mario = perso("SuperMario.gif", mario.x, mario.y)
+        '''if jump == 1 and xaya < 9:
+            print(xaya)
+            if xaya > 0:
+                xaya += 1
+                mario.y -= round(-2 / 3 * (xaya ** 2), 0)
+            else:
+                xaya += 1
+                mario.y += round(-2 / 3 * (xaya ** 2), 0)
+            if xaya == 9:
+                mario.y = tempy
+                if MarioState == 0:
+                    mario = perso("MarioSmall.gif", mario.x, mario.y)
+                if MarioState == 1:
+                    mario = perso("SuperMario.gif", mario.x, mario.y)
 
-    else:
-        jump = 0
-        xaya = -10
-    if event.type == KEYDOWN :
-        if event.key == K_RIGHT and xmomentum<10:
-            xmomentum += 0.25
-        if event.key == K_LEFT and xmomentum>-10 :
-            xmomentum += -0.25
-        if event.key == K_UP and jump == 0 :
-            ymomentum -= 20
-            jump = 1
-    else :
-        xmomentum = xmomentum/4
-        if mario.y+48 > 576 :
-            ymomentum += 5
-        jump = 0
-    mario.x += xmomentum
-    mario.y+= ymomentum
+        else:
+            jump = 0
+            xaya = -10'''
+
+        if event.type == KEYDOWN :
+            if event.key == K_RIGHT and xmomentum<10:
+                xmomentum += 0.25
+            if event.key == K_LEFT and xmomentum>-10 :
+                xmomentum += -0.25
+            if event.key == K_UP and jump == 0 :
+                ymomentum -= 5
+                mario.y = ymomentum
+                jump = 1
+        else :
+            xmomentum = xmomentum/4
+            if mario.y+48 < 528 :
+                ymomentum = 0
+            jump = 0
+        mario.x += xmomentum
+        mario.y += ymomentum
 
 
     if mario.x >= 448 :
