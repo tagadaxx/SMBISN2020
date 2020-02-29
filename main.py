@@ -128,11 +128,12 @@ while continuer:
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == KEYUP:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
 
-        if jump == 1 and xaya < 0:
+        if jump == 1 and xaya < 9:
             if initjump == 0:
                 xaya = -10
                 initjump = 1
-    if jump == 1 and xaya < 0:
+
+    if jump == 1 and xaya < 9:
         if xaya > 0:
             xaya += 1
             mario.y -= round(-2 / 3 * (xaya ** 2), 0)
@@ -150,23 +151,25 @@ while continuer:
         jump = 0
         xaya = -10
     if event.type == KEYDOWN :
-        if event.key == K_RIGHT and xmomentum<70:
-            xmomentum += 1
-        if event.key == K_LEFT and xmomentum>-70 :
-            xmomentum += -1
-
+        if event.key == K_RIGHT and xmomentum<10:
+            xmomentum += 0.25
+        if event.key == K_LEFT and xmomentum>-10 :
+            xmomentum += -0.25
+        if event.key == K_UP and jump == 0 :
+            ymomentum -= 20
+            jump = 1
     else :
-        xmomentum = xmomentum/2
-        if mario.y+48 < 576 :
-            ymomentum +=20
-
+        xmomentum = xmomentum/4
+        if mario.y+48 > 576 :
+            ymomentum += 5
+        jump = 0
     mario.x += xmomentum
     mario.y+= ymomentum
 
 
     if mario.x >= 448 :
-        X -= 4
-        mario.x -= 4
+        X -= xmomentum
+        mario.x -= xmomentum
 
 
     if MarioState == 0:
@@ -184,4 +187,4 @@ while continuer:
 
 
     pygame.display.update()
-    pygame.time.Clock().tick(60)
+    pygame.time.Clock().tick(80)
