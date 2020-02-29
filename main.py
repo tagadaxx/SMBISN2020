@@ -35,19 +35,23 @@ fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176, 672))
 splash = pygame.image.load("Smb splash.png").convert_alpha()
 splash = pygame.transform.scale(splash, (897,672))
+
 blocplein = Platform(960, 384, 48, 48, "BlocPlein.gif")
 brique = Platform(960, 384, 48, 48, "brique.gif")
 globalgr = Platform(960, 384, 720, 96, "global_ground.png")
 luckblo = Platform(960,384, 48,48, "QuestionBlock.gif")
 
 
+
+
 pygame.key.set_repeat(100, 25)
-mario = perso("MarioSmall.gif", 96, 528)
+mario = perso("MarioSmall.gif", 96, 528, 42, 48)
 
 
 def resize(a,x,y):
     self = pygame.transform.scale(a, (x,y))
     return self
+
 
 def text_objects(text, font):
     textSurface = font.render(text, True, white)
@@ -72,37 +76,37 @@ while continuer:
             if event.key == K_LEFT:
                 orientation = "G"
                 if walk < 1:
-                    mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
+                    mario = perso("MarioSmallWalk1.gif", mario.x, mario.y, 42,48)
                     mario.image = pygame.transform.flip(mario.image, True, False)
                     walk += 0.5
                 elif 1 <= walk < 2:
-                    mario = perso("MarioSmallWalk2.gif", mario.x, mario.y)
+                    mario = perso("MarioSmallWalk2.gif", mario.x, mario.y, 42, 48)
                     mario.image = pygame.transform.flip(mario.image, True, False)
                     walk += 0.5
                 elif walk >= 2:
-                    mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
+                    mario = perso("MarioSmallWalk3.gif", mario.x, mario.y, 42,48)
                     mario.image = pygame.transform.flip(mario.image, True, False)
                     walk = 0
             if event.key == K_RIGHT:
                 orientation = "D"
                 if walk < 1:
-                    mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
+                    mario = perso("MarioSmallWalk1.gif", mario.x, mario.y,42,48)
                     walk += 0.5
                 elif 1 <= walk < 2:
-                    mario = perso("MarioSmallWalk2.gif", mario.x, mario.y)
+                    mario = perso("MarioSmallWalk2.gif", mario.x, mario.y,42,48)
                     walk += 0.5
                 elif walk >= 2:
-                    mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
+                    mario = perso("MarioSmallWalk3.gif", mario.x, mario.y,42,48)
                     walk = 0
             if event.key == K_UP and jump == 0:
                 pygame.mixer.Sound.play(jump_sound)
-                mario = perso("MarioJump.gif", mario.x, mario.y)
+                mario = perso("MarioJump.gif", mario.x, mario.y,42,48)
             if event.key == K_DOWN and MarioState == 1:
-                mario = perso("mariocrouch.gif", mario.x, mario.y)
+                mario = perso("mariocrouch.gif", mario.x, mario.y,42,48)
 
         if event.type == KEYUP :
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == K_UP:
-                mario = perso("MarioSmall.gif", mario.x, mario.y)
+                mario = perso("MarioSmall.gif", mario.x, mario.y,42,48)
 
 
         if event.type == KEYDOWN :
@@ -125,7 +129,10 @@ while continuer:
     elif jump<0:
         jump=0
         ymomentum=0
-    pygame.sprite.spritecollide(mario, globalgr, False)
+
+
+
+
 
     if mario.x >= 448 :
         X -= xmomentum

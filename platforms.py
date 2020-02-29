@@ -8,7 +8,6 @@ class Platform(pygame.sprite.Sprite):
         self.imgh = imgh
         self.image = pygame.transform.scale(self.image, (self.imgw, self.imgh))
         self.rect = self.image.get_rect()
-        self.rect.y = y
-        self.rect.x = x
-    def rect(self) :
-        return self.rect
+        self.y = y
+        self.x = x
+

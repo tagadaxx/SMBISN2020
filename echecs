@@ -54,3 +54,23 @@ for i in range (ligne2 +1,ligne3):
 for i in range (ligne3 +1,ligne4):
     liste4 += coordlist[i]
 """
+
+
+    def collision(rectA, rectB):
+        if rectB.x + rectB.imgw < rectA.x:
+            # rectB est à gauche
+            return False
+        if rectB.y - rectB.imgh < rectA.y:
+            # rectB est au-dessus
+            return False
+        if rectB.x > rectA.x + rectA.imgw:
+            # rectB est à droite
+            return False
+        if rectB.y > rectA.y-rectA.imgh:
+            # rectB est en-dessous
+            return False
+        # Dans tous les autres cas il y a collision
+        return True
+
+    if collision(mario, globalgr) == True :
+        print("collision")"""
