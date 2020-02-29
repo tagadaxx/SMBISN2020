@@ -1,8 +1,7 @@
 import pygame
 from Perso import perso
 from platforms import Platform
-from Goomba import
-from pygame.locals import *
+ from pygame.locals import *
 
 
 blocks = [(20,8),(22,8),(24,8),(78,8),(80,8),(81,4),(82,4),(83,4),(85,4),(86,4),(87,4),(88,4),(91,4),(92,4),(93,4),(94,8),(100,8),(101,8),(118,8),(123,4),(121,4),(122,4),(128,4),(129,8),(130,8),(130,4),(168,8),(169,8),(171,8),(198,11)]
@@ -65,7 +64,7 @@ brique = Platform(960, 384, 48, 48, "brique.gif")
 globalgr = Platform(960, 384, 720, 96, "global_ground.png")
 luckblo = Platform(960,384, 48,48, "QuestionBlock.gif")
 pipe = Platform(960,384, 96,192, "tuyauseul.png")
-goomba = Goomba(960,384, 96,192, "goomba.gif.png")
+goomba = Platform(960,384, 48,48, "Goomba.gif")
 
 
 pygame.key.set_repeat(100, 25)
@@ -193,6 +192,8 @@ while continuer:
             fenetre.blit(globalgr.image, (round(globgr[i][0] * 48 + X,0), round(globgr[i][1] * 48)))
         for i in range(0, len(luckbl) - 1):
             fenetre.blit(luckblo.image, (luckbl[i][0] * 48 + X, luckbl[i][1] * 48))
+        for i in range(0, len(goombapos) - 1):
+            fenetre.blit(goomba.image, (goombapos[i][0] * 48 + X, goombapos[i][1] * 48))
         fenetre.blit(mario.image, (round(mario.x,0),round(mario.y,0)))
         message_display("score : " + str(points), 70, 30)
         message_display('coins : ' + str(coins), 70, 60)

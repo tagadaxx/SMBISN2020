@@ -9,10 +9,12 @@ class Goomba(pygame.sprite.Sprite):
         self.y = y
         self.rect.center = center
 
+    def mouvement(self,a):
+        if a == 0 :
 
 
 
-enemy_group1 = pg.sprite.Group(goomba0)
+"""enemy_group1 = pg.sprite.Group(goomba0)
         enemy_group2 = pg.sprite.Group(goomba1)
         enemy_group3 = pg.sprite.Group(goomba2, goomba3)
         enemy_group4 = pg.sprite.Group(goomba4, goomba5)
@@ -31,3 +33,4 @@ enemy_group1 = pg.sprite.Group(goomba0)
                                  enemy_group8,
                                  enemy_group9,
                                  enemy_group10]
+"""
