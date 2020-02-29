@@ -1,5 +1,5 @@
 import pygame
-
+from pygame.locals import *
 
 class perso:
 
@@ -8,7 +8,6 @@ class perso:
         self.x = x
         self.y = y
         self.rect = self.image.get_rect()
-
 
     def vie(mavie, x=50, y=50):
         mavie = 5

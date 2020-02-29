@@ -3,6 +3,7 @@ from Perso import perso
 from pygame.locals import *
 
 start = 0
+xmomentum,ymomentum = 0,0
 tempy= 0
 points = 0
 white = Color(255,255,255)
@@ -51,7 +52,7 @@ def message_display(text,a,b):
     fenetre.blit(TextSurf, TextRect)
 
 
-
+""" 
 with open("entities.txt", "r") as entities:
     for ligne in entities:
         liste= ligne[9:].split(";")
@@ -69,7 +70,7 @@ with open("entities.txt", "r") as entities:
             ligne4 = len(liste)
         coordlist += liste
 
-   """ print(liste1, liste2, liste3, liste4)
+print(liste1, liste2, liste3, liste4)
     print(coordlist)
     print(ligne1,ligne2,ligne3,ligne4)
 for i in range (0,ligne1):
@@ -91,7 +92,6 @@ while continuer:
             if event.key == K_SPACE :
                 start = 1
             if event.key == K_LEFT:
-                mario.x += -4
                 orientation = "G"
                 if walk < 1:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
@@ -106,7 +106,6 @@ while continuer:
                     mario.image = pygame.transform.flip(mario.image, True, False)
                     walk = 0
             if event.key == K_RIGHT:
-                mario.x += 4
                 orientation = "D"
                 if walk < 1:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y)
@@ -134,7 +133,7 @@ while continuer:
                 xaya = -10
                 initjump = 1
 
-    if jump == 1 and xaya < 9:
+    """    if jump == 1 and xaya < 9:
         if xaya > 0:
             xaya += 1
             mario.y -= round(-2 / 3 * (xaya ** 2), 0)
@@ -150,8 +149,22 @@ while continuer:
 
     else:
         jump = 0
-        xaya = -10
-
+        xaya = -10"""
+    if event.type == KEYDOWN :
+        if event.key == K_RIGHT and xmomentum<40:
+            xmomentum += 1
+        if event.key == K_LEFT and xmomentum>-40 :
+            xmomentum += -1
+        if event.key == K_UP and jump == 0 :
+            ymomentum -= 20
+            jump = 1
+    else :
+        xmomentum = xmomentum/2
+        if mario.y+48 > 576 :
+            ymomentum = ymomentum+5
+        jump = 0
+    mario.x += xmomentum
+    mario.y+= ymomentum
 
 
     if mario.x >= 448 :
