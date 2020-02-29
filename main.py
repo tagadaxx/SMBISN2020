@@ -6,7 +6,7 @@ start = 0
 tempy= 0
 points = 0
 white = Color(255,255,255)
-
+coordlist=[]
 screensize = (897, 672)
 pygame.init()
 fenetre = pygame.display.set_mode(screensize, RESIZABLE)
@@ -23,7 +23,7 @@ xaya=-10
 MarioState = 0
 walk = 0
 orientation = "D"
-
+liste1,liste2,liste3,liste4 = [],[],[],[]
 
 fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176, 672))
@@ -55,9 +55,33 @@ def message_display(text,a,b):
 
 with open("entities.txt", "r") as entities:
     for ligne in entities:
-        print(ligne[9:].split(";"))
+        liste= ligne[9:].split(";")
+        liste.pop()
+        for i in range(len(liste)):
+            liste[i]=int(liste[i])
+        print(ligne[0])
+        if ligne[0] == "1" :
+            ligne1 = len(liste)
+        if ligne[0] == "2" :
+            ligne2 = len(liste)
+        if ligne[0] == "3" :
+            ligne3 = len(liste)
+        if ligne[0] == "4" :
+            ligne4 = len(liste)
+        coordlist += liste
 
-
+   """ print(liste1, liste2, liste3, liste4)
+    print(coordlist)
+    print(ligne1,ligne2,ligne3,ligne4)
+for i in range (0,ligne1):
+    liste1 += coordlist[i]
+for i in range (ligne1 +1,ligne2):
+    liste2 += coordlist[i]
+for i in range (ligne2 +1,ligne3):
+    liste3 += coordlist[i]
+for i in range (ligne3 +1,ligne4):
+    liste4 += coordlist[i]
+"""
 while continuer:
     for event in pygame.event.get():
         if event.type == QUIT:
