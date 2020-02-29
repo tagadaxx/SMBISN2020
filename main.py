@@ -8,12 +8,9 @@ luckbl = [(16,8,10),(22,4,10),(21,8,11),(23,8,10),(79,8,11),(94,4,10),(107,8,10)
 hardbl = [(134,11),(135,10),(136,9),(137,8),(140,8),(141,9),(142,10),(143,11),(148,11),(149,10),(150,9),(151,8),(152,8),(155,8),(156,9),(157,10),(158,11),(181,11),(182,10),(183,9),(184,8),(185,7),(186,6),(187,5),(188,4),(189,4)]
 pipOr = [(29,10,2),(39,9,3),(47,8,4),(58,8,4),(163,10,2),(179,10,2)]
 
-
-
-
+pygame.init()
 start = 0
 xmomentum,ymomentum = 0,0
-tempy= 0
 points = 0
 white = Color(255,255,255)
 coordlist=[]
@@ -28,7 +25,6 @@ walk = 0
 initjump = 0
 coins = 0
 X=0
-xaya=-10
 MarioState = 0
 walk = 0
 orientation = "D"
@@ -42,7 +38,7 @@ blocplein = Platform(960, 384, 48, 48, "BlocPlein.gif")
 brique = Platform(960, 384, 48, 48, "brique.gif")
 
 
-pygame.key.set_repeat(1, 1)
+pygame.key.set_repeat(100, 25)
 mario = perso("MarioSmall.gif", 96, 528)
 
 
@@ -128,60 +124,43 @@ while continuer:
                     walk = 0
             if event.key == K_UP and jump == 0:
                 pygame.mixer.Sound.play(jump_sound)
-                tempy = mario.y
                 mario = perso("MarioJump.gif", mario.x, mario.y)
             if event.key == K_DOWN and MarioState == 1:
                 mario = perso("mariocrouch.gif", mario.x, mario.y)
 
         if event.type == KEYUP :
-            if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == KEYUP:
+            if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == K_UP:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
 
-    """if jump == 1 and xaya < 9:
-        if initjump == 0:
-            xaya = -10
-            initjump = 1
-
-        '''if jump == 1 and xaya < 9:
-            print(xaya)
-            if xaya > 0:
-                xaya += 1
-                mario.y -= round(-2 / 3 * (xaya ** 2), 0)
-            else:
-                xaya += 1
-                mario.y += round(-2 / 3 * (xaya ** 2), 0)
-            if xaya == 9:
-                mario.y = tempy
-                if MarioState == 0:
-                    mario = perso("MarioSmall.gif", mario.x, mario.y)
-                if MarioState == 1:
-                    mario = perso("SuperMario.gif", mario.x, mario.y)
-
-        else:
-            jump = 0
-            xaya = -10'''
 
         if event.type == KEYDOWN :
-            if event.key == K_RIGHT and xmomentum<10:
-                xmomentum += 0.25
-            if event.key == K_LEFT and xmomentum>-10 :
-                xmomentum += -0.25
+            if event.key == K_RIGHT and xmomentum<7:
+                xmomentum += 0.5
+            if event.key == K_LEFT and xmomentum>-7 :
+                xmomentum -= 0.5
             if event.key == K_UP and jump == 0 :
-                ymomentum -= 5
-                mario.y = ymomentum
-                jump = 1
-        else :
-            xmomentum = xmomentum/4
-            if mario.y+48 < 528 :
-                ymomentum = 0
-            jump = 0
-        mario.x += xmomentum
+                ymomentum = -10
+
+    if mario.y < 526:
+        pass
+    else :
+        pass
+    mario.x += xmomentum
+    if ymomentum!=0 and 0<=jump<=200:
         mario.y += ymomentum
+        jump-=ymomentum
+    elif jump>=200:
+        jump=200
+        ymomentum=-ymomentum
+    elif jump<0:
+        jump=0
+        ymomentum=0
 
 
     if mario.x >= 448 :
         X -= xmomentum
         mario.x -= xmomentum
+    xmomentum=xmomentum-.15 if xmomentum>0 else xmomentum+.15
 
 
     if MarioState == 0:
@@ -193,6 +172,8 @@ while continuer:
         fenetre.blit(splash,(0,0))
     if start == 1 :
         fenetre.blit(fond, (X, 0))
+        message_display("score : " + str(points), 70, 30)
+        message_display('coins : ' + str(coins), 70, 60)
         #pygame.draw.rect(fenetre, white, pygame.Rect(0, 0, 10176, 672))
         for i in range(0, len(blocks)-1):
             fenetre.blit(brique.image, (blocks[i][0]*48 + X, blocks[i][1]*48))
@@ -200,7 +181,6 @@ while continuer:
             fenetre.blit(blocplein.image, (hardbl[i][0] * 48 + X, hardbl[i][1] * 48))
         fenetre.blit(mario.image, (round(mario.x,0),round(mario.y,0)))
 
-    message_display("score : "+str(points), 70, 30)
-    message_display('coins : '+str(coins), 70, 60)
+
     pygame.display.update()
     pygame.time.Clock().tick(80)
