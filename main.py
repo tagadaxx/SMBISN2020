@@ -96,6 +96,7 @@ while continuer:
             if event.key == K_SPACE :
                 start = 1
             if event.key == K_LEFT:
+                xmomentum = -0.5
                 orientation = "G"
                 if walk < 1:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y, 42,48)
@@ -109,8 +110,8 @@ while continuer:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y, 42,48)
                     mario.image = pygame.transform.flip(mario.image, True, False)
                     walk = 0
-                mario.x -=5
             if event.key == K_RIGHT:
+                xmomentum = 0.5
                 orientation = "D"
                 if walk < 1:
                     mario = perso("MarioSmallWalk1.gif", mario.x, mario.y,42,48)
@@ -121,7 +122,6 @@ while continuer:
                 elif walk >= 2:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y,42,48)
                     walk = 0
-                mario.x += 5
             if event.key == K_UP and jump == 0:
                 pygame.mixer.Sound.play(jump_sound)
                 mario = perso("MarioJump.gif", mario.x, mario.y,42,48)
@@ -151,7 +151,7 @@ while continuer:
         elif arret == 1:
             xmomentum = xmomentum / 9
 
-
+    mario.x += xmomentum
     if ymomentum != 0 and 0 <= jump <= 200:
         mario.y += ymomentum
         jump -= ymomentum
@@ -162,7 +162,7 @@ while continuer:
     elif jump < 0:
         jump = 0
         ymomentum = 0
-    xmomentum = xmomentum - .15 if xmomentum > 0 else xmomentum + .15
+    xmomentum = xmomentum - .1 if xmomentum > 0 else xmomentum + .1
 
 
     if mario.x >= 448 :
