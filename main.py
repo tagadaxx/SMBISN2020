@@ -1,6 +1,15 @@
 import pygame
 from Perso import perso
+from platforms import Platform
 from pygame.locals import *
+
+blocks = [(20,8),(22,8),(24,8),(78,8),(80,8),(81,4),(82,4),(83,4),(85,4),(86,4),(87,4),(88,4),(91,4),(92,4),(93,4),(94,8),(100,8),(101,8),(117,8),(120,4),(121,4),(122,4),(127,4),(128,8),(129,8),(130,4),(168,8),(169,8),(171,8),(198,11)]
+luckbl = [(16,8,10),(22,4,10),(21,8,11),(23,8,10),(79,8,11),(94,4,10),(107,8,10),(109,8,10),(109,4,12),(111,8,10),(129,4,10),(130,4,10),(170,4,10)]
+hardbl = [(134,11),(135,10),(136,9),(137,8),(140,8),(141,9),(142,10),(143,11),(148,11),(149,10),(150,9),(151,8),(152,8),(155,8),(156,9),(157,10),(158,11),(181,11),(182,10),(183,9),(184,8),(185,7),(186,6),(187,5),(188,4),(189,4)]
+pipOr = [(29,10,2),(39,9,3),(47,8,4),(58,8,4),(163,10,2),(179,10,2)]
+
+
+
 
 start = 0
 xmomentum,ymomentum = 0,0
@@ -30,6 +39,8 @@ fond = pygame.image.load("map.png").convert_alpha()
 fond = pygame.transform.scale(fond, (10176, 672))
 splash = pygame.image.load("Smb splash.png").convert_alpha()
 splash = pygame.transform.scale(splash, (897,672))
+blocplein = Platform(960, 384, 48, 48, "BlocPlein.gif")
+brique = Platform(960, 384, 48, 48, "brique.gif")
 
 
 pygame.key.set_repeat(1, 1)
@@ -128,10 +139,10 @@ while continuer:
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == KEYUP:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
 
-        if jump == 1 and xaya < 9:
-            if initjump == 0:
-                xaya = -10
-                initjump = 1
+    """if jump == 1 and xaya < 9:
+        if initjump == 0:
+            xaya = -10
+            initjump = 1
 
     if jump == 1 and xaya < 9:
         if xaya > 0:
@@ -140,7 +151,7 @@ while continuer:
         else:
             xaya += 1
             mario.y += round(-2 / 3 * (xaya ** 2), 0)
-        if xaya == 9:
+        if xaya == 0:
             mario.y = tempy
             if MarioState == 0:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
@@ -149,7 +160,7 @@ while continuer:
 
     else:
         jump = 0
-        xaya = -10
+        xaya = -10"""
     if event.type == KEYDOWN :
         if event.key == K_RIGHT and xmomentum<10:
             xmomentum += 0.25
@@ -160,8 +171,9 @@ while continuer:
             jump = 1
     else :
         xmomentum = xmomentum/4
-        if mario.y+48 > 576 :
+        if mario.y+48 < 528 :
             ymomentum += 5
+        else: mario.y = 528
         jump = 0
     mario.x += xmomentum
     mario.y+= ymomentum
@@ -181,10 +193,14 @@ while continuer:
         fenetre.blit(splash,(0,0))
     if start == 1 :
         fenetre.blit(fond, (X, 0))
+        #pygame.draw.rect(fenetre, white, pygame.Rect(0, 0, 10176, 672))
+        for i in range(0, len(blocks)-1):
+            fenetre.blit(brique.image, (blocks[i][0]*48 + X, blocks[i][1]*48))
+        for i in range(0, len(hardbl) - 1):
+            fenetre.blit(blocplein.image, (hardbl[i][0] * 48 + X, hardbl[i][1] * 48))
         fenetre.blit(mario.image, (round(mario.x,0),round(mario.y,0)))
+
     message_display("score : "+str(points), 70, 30)
     message_display('coins : '+str(coins), 70, 60)
-
-
     pygame.display.update()
     pygame.time.Clock().tick(80)
