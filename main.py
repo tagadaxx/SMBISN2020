@@ -171,7 +171,7 @@ while continuer:
     if MarioState == 0:
         mario.image = resize(mario.image, 42, 48)
     elif MarioState == 1 or MarioState == 2:
-        mario.image = resize(mario.image, 48, 80)
+        mario.image = resize(mario.image, 48, 80)  
 
     if start == 0 :
         fenetre.blit(splash,(0,0))
