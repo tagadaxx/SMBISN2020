@@ -32,7 +32,7 @@ splash = pygame.transform.scale(splash, (897,672))
 
 
 
-pygame.key.set_repeat(100, 25)
+pygame.key.set_repeat(1, 1)
 mario = perso("MarioSmall.gif", 96, 528)
 
 
@@ -67,13 +67,6 @@ while continuer:
         if event.type == KEYDOWN :
             if event.key == K_SPACE :
                 start = 1
-            if event.key == K_UP and jump == 0:
-                jump = 1
-                pygame.mixer.Sound.play(jump_sound)
-                tempy = mario.y
-                mario = perso("MarioJump.gif", mario.x, mario.y)
-            if event.key == K_DOWN and MarioState == 1:
-                mario = perso("mariocrouch.gif", mario.x, mario.y)
             if event.key == K_LEFT:
                 mario.x += -8
                 orientation = "G"
@@ -101,10 +94,15 @@ while continuer:
                 elif walk == 2:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y)
                     walk = 0
+            if event.key == K_UP and jump == 0:
+                jump = 1
+                pygame.mixer.Sound.play(jump_sound)
+                tempy = mario.y
+                mario = perso("MarioJump.gif", mario.x, mario.y)
+            if event.key == K_DOWN and MarioState == 1:
+                mario = perso("mariocrouch.gif", mario.x, mario.y)
 
         if event.type == KEYUP :
-            if event.key == K_RIGHT:
-                mario.x += 10
             if event.key == K_DOWN or event.key == K_LEFT or event.key == K_RIGHT or event.key == KEYUP:
                 mario = perso("MarioSmall.gif", mario.x, mario.y)
 
@@ -114,7 +112,6 @@ while continuer:
                 initjump = 1
 
     if jump == 1 and xaya < 9:
-
         if xaya > 0:
             xaya += 1
             mario.y -= round(-2 / 3 * (xaya ** 2), 0)
@@ -123,14 +120,15 @@ while continuer:
             mario.y += round(-2 / 3 * (xaya ** 2), 0)
         if xaya == 9:
             mario.y = tempy
-            if MarioState == 0:
-                mario = perso("MarioSmall.gif", mario.x, mario.y)
-            if MarioState == 1:
-                mario = perso("SuperMario.gif", mario.x, mario.y)
 
     else:
         jump = 0
         xaya = -10
+
+    if MarioState == 0:
+        mario = perso("MarioSmall.gif", mario.x, mario.y)
+    if MarioState == 1:
+        mario = perso("SuperMario.gif", mario.x, mario.y)
 
     if mario.x >= 448 :
         X -= 4
