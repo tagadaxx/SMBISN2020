@@ -12,6 +12,7 @@ globgr = [(0,12),(15,12),(30,12),(45,12),(54,12),(71,12),(89,12),(89,12),(104,12
 
 pygame.init()
 start = 0
+arret = 0
 xmomentum,ymomentum = 0,0
 points = 0
 white = Color(255,255,255)
@@ -135,30 +136,32 @@ while continuer:
                 if niveau[int(mario.y//48)][int((mario.x-X)//48+1)]==0:
                     xmomentum += 0.5
                 elif niveau[int(mario.y//48)][int((mario.x-X)//48+1)]==1:
-                    mario.x = I
-                    mario.y = J
                     xmomentum = 0
+                    arret = 1
 
             if event.key == K_LEFT and xmomentum>-7 :
                 xmomentum -= 0.5
 
             if event.key == K_UP and jump == 0 :
-                mario.y -= 50
-            if event.key == K_UP and (event.key == K_RIGHT or event.key == K_LEFT):
-                xmomentum = *1,5
-        else :
-            xmomentum = xmomentum/9
-    mario.x += xmomentum
-    if ymomentum!=0 and 0<=jump<=200:
-        mario.y += ymomentum
-        jump-=ymomentum
-    elif jump>=200:
-        jump=200
-        ymomentum=-ymomentum
-        xmomentum = 2*xmomentum
-    else:
-        jump=0
-        ymomentum=0
+                mario.x += xmomentum
+
+        elif arret == 1:
+            xmomentum = xmomentum / 9
+
+        mario.x += xmomentum
+        if ymomentum != 0 and 0 <= jump <= 200:
+            mario.y += ymomentum
+            jump -= ymomentum
+        elif jump >= 200:
+            jump = 200
+            ymomentum = -ymomentum
+        elif jump < 0:
+            jump = 0
+            ymomentum = 0
+        #xmomentum = xmomentum - .15 if xmomentum > 0 else xmomentum + .15
+
+
+
 
 
 
