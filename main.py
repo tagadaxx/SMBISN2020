@@ -1,7 +1,7 @@
 import pygame
 from Perso import perso
 from platforms import Platform
- from pygame.locals import *
+from pygame.locals import *
 
 
 blocks = [(20,8),(22,8),(24,8),(78,8),(80,8),(81,4),(82,4),(83,4),(85,4),(86,4),(87,4),(88,4),(91,4),(92,4),(93,4),(94,8),(100,8),(101,8),(118,8),(123,4),(121,4),(122,4),(128,4),(129,8),(130,8),(130,4),(168,8),(169,8),(171,8),(198,11)]
