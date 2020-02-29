@@ -139,30 +139,44 @@ while continuer:
             print(niveau[int(mario.y // 48)][int((mario.x - X) // 48 + 1)])
             if event.key == K_RIGHT and xmomentum<7:
                 if niveau[int(mario.y//48)][int((mario.x-X)//48+1)]==0:
-                    xmomentum += 0.5
+                    xmomentum += 8
                 elif niveau[int(mario.y//48)][int((mario.x-X)//48+1)]==1:
                     xmomentum = 0
                     arret = 1
 
             if event.key == K_LEFT and xmomentum>-7 :
-                xmomentum -= 0.5
+                if niveau[int(mario.y // 48)][int((mario.x - X) // 48 - 1)] == 0:
+                    xmomentum -= 8
+                elif niveau[int(mario.y // 48)][int((mario.x - X) // 48 - 1)] == 1 :
+                    xmomentum = 0
+                    arret = 1
+
+            if event.key== K_UP and ymomentum>7 :
+                if niveau[int(mario.y // 48+1)][int((mario.x ) // 48)] == 0:
+                    ymomentum = 0
+                elif niveau[int(mario.y // 48+1)][int((mario.x ) // 48 )] == 1 :
+                    xmomentum = 0
+                    ymomentum = 0
+                    arret = 1
+                else:
+                    ymomentum += 5
 
 
         elif arret == 1:
-            xmomentum = xmomentum / 9
+            xmomentum = xmomentum / 15
+
 
     mario.x += xmomentum
     if ymomentum != 0 and 0 <= jump <= 200:
         mario.y += ymomentum
         jump -= ymomentum
     elif jump >= 200:
-        jump = 200
+        jump = 0
         ymomentum = -ymomentum
-        xmomentum +=0.5
     elif jump < 0:
         jump = 0
         ymomentum = 0
-    xmomentum = xmomentum - .1 if xmomentum > 0 else xmomentum + .1
+    xmomentum = xmomentum - .15 if xmomentum > 0 else xmomentum + .15
 
 
     if mario.x >= 448 :
