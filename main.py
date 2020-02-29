@@ -135,16 +135,16 @@ while continuer:
 
         if event.type == KEYDOWN :
             if event.key == K_RIGHT and xmomentum<7:
-                xmomentum += 0.5
+                xmomentum += 0.6
             if event.key == K_LEFT and xmomentum>-7 :
-                xmomentum -= 0.5
+                xmomentum -= 0.6
             if event.key == K_UP and jump == 0 :
                 ymomentum = -10
 
-    if mario.y < 526:
+    '''if mario.y < 526:
         pass
     else :
-        pass
+        pass'''
     mario.x += xmomentum
     if ymomentum!=0 and 0<=jump<=200:
         mario.y += ymomentum
