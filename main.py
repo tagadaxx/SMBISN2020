@@ -6,8 +6,8 @@ from pygame.locals import *
 
 blocks = [(20,8),(22,8),(24,8),(78,8),(80,8),(81,4),(82,4),(83,4),(85,4),(86,4),(87,4),(88,4),(91,4),(92,4),(93,4),(94,8),(100,8),(101,8),(118,8),(123,4),(121,4),(122,4),(128,4),(129,8),(130,8),(130,4),(168,8),(169,8),(171,8),(198,11)]
 luckbl = [(16,8,10),(22,4,10),(21,8,11),(23,8,10),(79,8,11),(94,4,10),(106,8,10),(109,8,10),(109,4,12),(112,8,10),(129,4,10),(130,4,10),(170,4,10)]
-hardbl = [(134,11),(135,10),(136,9),(137,8),(140,8),(141,9),(142,10),(143,11),(148,11),(149,10),(150,9),(151,8),(152,8),(155,8),(156,9),(157,10),(158,11),(181,11),(182,10),(183,9),(184,8),(185,7),(186,6),(187,5),(188,4),(189,4),(190,4)]
-pipOr = [(29,10,2),(39,9,3),(47,8,4),(58,8,4),(163,10,2),(179,10,2)]
+hardbl = [(134,11),(135,10),(135,11),(136,10),(136,11),(136,9),(137,8),(137,9),(137,10),(137,11),(140,8),(140,9),(140,10),(140,11),(141,9),(141,10),(141,11),(142,10),(142,10),(143,11),(148,11),(149,9),(150,9),(151,8),(152,8),(155,8),(156,9),(157,10),(158,11),(181,11),(182,10),(183,9),(184,8),(185,7),(186,6),(187,5),(188,4),(189,4),(190,4)]
+piphg = [(29,10,2),(39,9,3),(47,8,4),(58,8,4),(163,10,2),(179,10,2)]
 globgr = [(0,12),(15,12),(30,12),(45,12),(54,12),(71,12),(89,12),(89,12),(104,12),(119,12),(134,12),(138,12),(155,12),(170,12),(185,12),(200,12),(215,12)]
 
 pygame.init()
@@ -63,6 +63,7 @@ blocplein = Platform(960, 384, 48, 48, "BlocPlein.gif")
 brique = Platform(960, 384, 48, 48, "brique.gif")
 globalgr = Platform(960, 384, 720, 96, "global_ground.png")
 luckblo = Platform(960,384, 48,48, "QuestionBlock.gif")
+pipe = Platform(960,384, 96,192, "tuyauseul.png")
 
 
 pygame.key.set_repeat(100, 25)
@@ -180,24 +181,28 @@ while continuer:
     if MarioState == 0:
         mario.image = resize(mario.image, 42, 48)
     elif MarioState == 1 or MarioState == 2:
-        mario.image = resize(mario.image, 48, 80)  
+        mario.image = resize(mario.image, 48, 80)
 
     if start == 0 :
         fenetre.blit(splash,(0,0))
     if start == 1 :
         fenetre.blit(fond, (X, 0))
-        message_display("score : " + str(points), 70, 30)
-        message_display('coins : ' + str(coins), 70, 60)
+
         pygame.draw.rect(fenetre, pygame.Color(92, 148, 252), pygame.Rect(0, 0, 10176, 672))
+        for i in range(0, len(piphg)-1):
+            fenetre.blit(pipe.image, (piphg[i][0] * 48 + X, piphg[i][1] * 48))
         for i in range(0, len(blocks)-1):
             fenetre.blit(brique.image, (round(blocks[i][0]*48 + X,0), round(blocks[i][1]*48,0)))
         for i in range(0, len(hardbl) - 1):
             fenetre.blit(blocplein.image, (round(hardbl[i][0] * 48 + X,0), round(hardbl[i][1] * 48,0)))
         for i in range(0, len(globgr) - 1):
             fenetre.blit(globalgr.image, (round(globgr[i][0] * 48 + X,0), round(globgr[i][1] * 48)))
-            for i in range(0, len(luckbl) - 1):
-                fenetre.blit(luckblo.image, (luckbl[i][0] * 48 + X, luckbl[i][1] * 48))
+        for i in range(0, len(luckbl) - 1):
+            fenetre.blit(luckblo.image, (luckbl[i][0] * 48 + X, luckbl[i][1] * 48))
         fenetre.blit(mario.image, (round(mario.x,0),round(mario.y,0)))
+        message_display("score : " + str(points), 70, 30)
+        message_display('coins : ' + str(coins), 70, 60)
+        message_display("score : " + str((mario.x-X)//48 ), 70, 90)
 
     pygame.display.update()
     pygame.time.Clock().tick(80)
