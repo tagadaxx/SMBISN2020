@@ -141,10 +141,7 @@ while continuer:
             if event.key == K_UP and jump == 0 :
                 ymomentum = -10
 
-    '''if mario.y < 526:
-        pass
-    else :
-        pass'''
+
     mario.x += xmomentum
     if ymomentum!=0 and 0<=jump<=200:
         mario.y += ymomentum
@@ -160,6 +157,7 @@ while continuer:
     if mario.x >= 448 :
         X -= xmomentum
         mario.x -= xmomentum
+
     xmomentum=xmomentum-.15 if xmomentum>0 else xmomentum+.15
 
 
