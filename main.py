@@ -8,7 +8,7 @@ blocks = [(20,8),(22,8),(24,8),(78,8),(80,8),(81,4),(82,4),(83,4),(85,4),(86,4),
 luckbl = [(16,8,10),(22,4,10),(21,8,11),(23,8,10),(79,8,11),(94,4,10),(106,8,10),(109,8,10),(109,4,12),(112,8,10),(129,4,10),(130,4,10),(170,4,10)]
 hardbl = [(134,11),(135,10),(136,9),(137,8),(140,8),(141,9),(142,10),(143,11),(148,11),(149,10),(150,9),(151,8),(152,8),(155,8),(156,9),(157,10),(158,11),(181,11),(182,10),(183,9),(184,8),(185,7),(186,6),(187,5),(188,4),(189,4),(190,4)]
 pipOr = [(29,10,2),(39,9,3),(47,8,4),(58,8,4),(163,10,2),(179,10,2)]
-globgr = [(0,12),(15,12),(30,12),(45,12),(54,12),(71,12),(89,12),(89,12),(104,12),(119,12),(134,12),(138,12),(155,12),(170,12),(185,12)]
+globgr = [(0,12),(15,12),(30,12),(45,12),(54,12),(71,12),(89,12),(89,12),(104,12),(119,12),(134,12),(138,12),(155,12),(170,12),(185,12),(200,12),(215,12)]
 
 pygame.init()
 start = 0
@@ -22,6 +22,8 @@ continuer = True
 RUN, PAUSE = 0, 1
 etat = RUN
 jump_sound = pygame.mixer.Sound("jump.wav")
+main_theme = pygame.mixer.music.load("smbros.wav")
+pygame.mixer.music.play(-1)
 jump = 0
 walk = 0
 initjump = 0
@@ -141,10 +143,11 @@ while continuer:
                 xmomentum -= 0.5
 
             if event.key == K_UP and jump == 0 :
-                ymomentum = -10
+                mario.y -= 50
             if event.key == K_UP and (event.key == K_RIGHT or event.key == K_LEFT):
                 xmomentum = *1,5
-
+        else :
+            xmomentum = xmomentum/9
     mario.x += xmomentum
     if ymomentum!=0 and 0<=jump<=200:
         mario.y += ymomentum
@@ -152,7 +155,8 @@ while continuer:
     elif jump>=200:
         jump=200
         ymomentum=-ymomentum
-    elif jump<0:
+        xmomentum = 2*xmomentum
+    else:
         jump=0
         ymomentum=0
 
@@ -173,7 +177,7 @@ while continuer:
     if MarioState == 0:
         mario.image = resize(mario.image, 42, 48)
     elif MarioState == 1 or MarioState == 2:
-        mario.image = resize(mario.image, 48, 80)
+        mario.image = resize(mario.image, 48, 80)  
 
     if start == 0 :
         fenetre.blit(splash,(0,0))
@@ -183,11 +187,11 @@ while continuer:
         message_display('coins : ' + str(coins), 70, 60)
         pygame.draw.rect(fenetre, pygame.Color(92, 148, 252), pygame.Rect(0, 0, 10176, 672))
         for i in range(0, len(blocks)-1):
-            fenetre.blit(brique.image, (blocks[i][0]*48 + X, blocks[i][1]*48))
+            fenetre.blit(brique.image, (round(blocks[i][0]*48 + X,0), round(blocks[i][1]*48,0)))
         for i in range(0, len(hardbl) - 1):
-            fenetre.blit(blocplein.image, (hardbl[i][0] * 48 + X, hardbl[i][1] * 48))
+            fenetre.blit(blocplein.image, (round(hardbl[i][0] * 48 + X,0), round(hardbl[i][1] * 48,0)))
         for i in range(0, len(globgr) - 1):
-            fenetre.blit(globalgr.image, (globgr[i][0] * 48 + X, globgr[i][1] * 48))
+            fenetre.blit(globalgr.image, (round(globgr[i][0] * 48 + X,0), round(globgr[i][1] * 48)))
             for i in range(0, len(luckbl) - 1):
                 fenetre.blit(luckblo.image, (luckbl[i][0] * 48 + X, luckbl[i][1] * 48))
         fenetre.blit(mario.image, (round(mario.x,0),round(mario.y,0)))
