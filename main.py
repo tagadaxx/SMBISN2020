@@ -109,6 +109,7 @@ while continuer:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y, 42,48)
                     mario.image = pygame.transform.flip(mario.image, True, False)
                     walk = 0
+                mario.x -=5
             if event.key == K_RIGHT:
                 orientation = "D"
                 if walk < 1:
@@ -120,9 +121,12 @@ while continuer:
                 elif walk >= 2:
                     mario = perso("MarioSmallWalk3.gif", mario.x, mario.y,42,48)
                     walk = 0
+                mario.x += 5
             if event.key == K_UP and jump == 0:
                 pygame.mixer.Sound.play(jump_sound)
                 mario = perso("MarioJump.gif", mario.x, mario.y,42,48)
+                ymomentum = -10
+
             if event.key == K_DOWN and MarioState == 1:
                 mario = perso("mariocrouch.gif", mario.x, mario.y,42,48)
 
@@ -143,39 +147,27 @@ while continuer:
             if event.key == K_LEFT and xmomentum>-7 :
                 xmomentum -= 0.5
 
-            if event.key == K_UP and jump == 0 :
-                mario.x += xmomentum
 
         elif arret == 1:
             xmomentum = xmomentum / 9
 
-        mario.x += xmomentum
-        if ymomentum != 0 and 0 <= jump <= 200:
-            mario.y += ymomentum
-            jump -= ymomentum
-        elif jump >= 200:
-            jump = 200
-            ymomentum = -ymomentum
-        elif jump < 0:
-            jump = 0
-            ymomentum = 0
-        #xmomentum = xmomentum - .15 if xmomentum > 0 else xmomentum + .15
 
-
-
-
+    if ymomentum != 0 and 0 <= jump <= 200:
+        mario.y += ymomentum
+        jump -= ymomentum
+    elif jump >= 200:
+        jump = 200
+        ymomentum = -ymomentum
+        xmomentum +=0.5
+    elif jump < 0:
+        jump = 0
+        ymomentum = 0
+    xmomentum = xmomentum - .15 if xmomentum > 0 else xmomentum + .15
 
 
     if mario.x >= 448 :
         X -= xmomentum
         mario.x -= xmomentum
-
-
-
-    if mario.x <= 96:
-        X -= xmomentum
-        mario.x -= xmomentum
-
 
 
     if MarioState == 0:
@@ -202,7 +194,7 @@ while continuer:
         fenetre.blit(mario.image, (round(mario.x,0),round(mario.y,0)))
         message_display("score : " + str(points), 70, 30)
         message_display('coins : ' + str(coins), 70, 60)
-        message_display("score : " + str((mario.x-X)//48 ), 70, 90)
+        message_display("score : " + str((mario.x-X)//48), 80, 90)
 
     pygame.display.update()
     pygame.time.Clock().tick(80)
