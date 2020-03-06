@@ -217,3 +217,4 @@ while continuer:
         message_display('coins : ' + str(coins), 70, 60)
     pygame.display.update()
     pygame.time.Clock().tick(80)
+    
