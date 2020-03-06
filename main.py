@@ -215,7 +215,5 @@ while continuer:
         fenetre.blit(mario.image, (round(mario.x,0),round(mario.y,0)))
         message_display("score : " + str(points), 70, 30)
         message_display('coins : ' + str(coins), 70, 60)
-        message_display("score : " + str((mario.x-X)//48), 80, 90)
-
     pygame.display.update()
     pygame.time.Clock().tick(80)
